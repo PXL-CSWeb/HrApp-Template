@@ -8,27 +8,33 @@ namespace HrApp.TagHelpers
         public LoginType LoginType { get; set; } = LoginType.Username;
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            switch(LoginType)
+            output.Content.Clear();
+
+            switch (LoginType)
             {
                 case LoginType.Username:
-                    output.Content.SetContent("<i class=\"fa-solid fa-user\"></i>"
+                    output.Content.AppendHtml("<i class=\"fa-solid fa-user\"></i>"
                                             + "<h4>Username</h4>");
                     break;
                 case LoginType.Email:
-                    output.Content.SetContent("<i class=\"fa-solid fa-at\"></i>"
+                    output.Content.AppendHtml("<i class=\"fa-solid fa-at\"></i>"
                                             + "<h4>Email</h4>");
                     break;
                 case LoginType.Facebook:
-                    output.Content.SetContent("<i class=\"fa-brands fa-facebook\"></i>"
+                    output.Content.AppendHtml("<i class=\"fa-brands fa-facebook\"></i>"
                                             + "<h4>Facebook</h4>");
                     break;
                 case LoginType.Google:
-                    output.Content.SetContent("<i class=\"fa-brands fa-google\"></i>"
+                    output.Content.AppendHtml("<i class=\"fa-brands fa-google\"></i>"
                                             + "<h4>Google</h4>");
                     break;
                 case LoginType.External:
-                    output.Content.SetContent("<i class=\"fa-solid fa-fingerprint\"></i>"
+                    output.Content.AppendHtml("<i class=\"fa-solid fa-fingerprint\"></i>"
                                             + "<h4>Open Id</h4>");
+                    break;
+                default:
+                    output.Content.AppendHtml("<i class=\"fa-solid fa-question\"></i>"
+                                            + "<h4>Unknown</h4>");
                     break;
             }
 
